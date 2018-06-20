@@ -15,7 +15,9 @@ gulp.task('js', ['react'], function () {
 });
 
 gulp.task('css', ['react'], function () {
-    return gulp.src('frontend/build/static/css/*.css')
+    return gulp.src([
+        'frontend/build/static/css/*.css',
+    ])
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest('public/assets/css'))
 });
