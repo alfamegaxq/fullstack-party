@@ -26,4 +26,13 @@
       border-radius: 5px;
     }
   }
+
+  //hovers
+  &:hover {
+    cursor: pointer;
+
+    &.hover-citrus {
+      background-color: $color-citrus;
+    }
+  }
 }
