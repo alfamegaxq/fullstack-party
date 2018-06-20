@@ -2,7 +2,7 @@ FROM php:7.2-fpm
 
 RUN apt-get update && apt-get install -y zlib1g-dev libxml2-dev
 
-RUN docker-php-ext-install zip \
+RUN docker-php-ext-install zip iconv\
     && apt-get update \
     && yes | apt-get install curl \
     && yes | apt-get install git \
