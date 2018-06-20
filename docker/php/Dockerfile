@@ -1,6 +1,6 @@
 FROM php:7.2-fpm
 
-RUN apt-get update && apt-get install -y zlib1g-dev libxml2-dev php-soap
+RUN apt-get update && apt-get install -y zlib1g-dev libxml2-dev
 
 RUN apt-get update \
     && yes | apt-get install curl \
