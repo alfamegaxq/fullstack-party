@@ -3,7 +3,14 @@
 @import '../node_modules/bootstrap/scss/_variables.scss';
 @import '../node_modules/bootstrap/scss/_reboot.scss';
 @import '../node_modules/bootstrap/scss/_grid.scss';
+@import '../node_modules/bootstrap/scss/utilities/_spacing.scss';
+@import '../node_modules/bootstrap/scss/utilities/_position.scss';
+@import './styles/_variables.scss';
+@import './styles/_buttons.scss';
+@import './styles/_mixins.scss';
+@import './styles/_positioning.scss';
 
 body, html {
   height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
