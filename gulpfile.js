@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var run = require('gulp-run');
 var autoprefixer = require('gulp-autoprefixer');
+var bust = require('gulp-buster');
 
 gulp.task('react', ['sass'], function () {
     return run('yarn --cwd frontend build').exec();
@@ -12,6 +13,8 @@ gulp.task('js', ['react'], function () {
     return gulp.src('frontend/build/static/js/*.js')
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest('public/assets/js'))
+        .pipe(bust())
+        .pipe(gulp.dest('.'));
 });
 
 gulp.task('css', ['react'], function () {
@@ -24,6 +27,8 @@ gulp.task('css', ['react'], function () {
         }))
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest('public/assets/css'))
+        .pipe(bust())
+        .pipe(gulp.dest('.'));
 });
 
 gulp.task('sass', function () {
