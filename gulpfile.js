@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var run = require('gulp-run');
-
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('react', ['sass'], function () {
     return run('yarn --cwd frontend build').exec();
@@ -18,6 +18,10 @@ gulp.task('css', ['react'], function () {
     return gulp.src([
         'frontend/build/static/css/*.css',
     ])
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest('public/assets/css'))
 });
