@@ -1,0 +1,32 @@
+@import '../../styles/_variables.scss';
+
+:local(.image-container) {
+  background-color: $color-black-russian;
+  height: calc(100vh - 112px);
+}
+
+:local(.background) {
+  background: url("/img/list-image.png") no-repeat center;
+  background-size: cover;
+  opacity: 0.8;
+  position: absolute;
+  height: calc(100vh - 112px);
+  width: 50vw;
+}
+
+:local(.page-title) {
+  width: 515px;
+  color: $color-white;
+  top: calc(100vh / 2 - 112px);
+
+  h1 {
+    font-size: 44px;
+    font-weight: 300;
+
+    small {
+      font-size: 20px;
+      font-weight: 300;
+      width: 100px;
+    }
+  }
+}
