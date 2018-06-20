@@ -1,0 +1,31 @@
+@import '../../../styles/_variables.scss';
+
+header {
+  //colors
+  &.white {
+    background-color: $color-white;
+  }
+
+  //size
+  &.medium {
+    height: 112px;
+  }
+
+  &.full {
+    width: 100%;
+  }
+}
+
+:local(.logout) {
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  font-weight: 300;
+  letter-spacing: 0.35px;
+  color: $color-lucky-point;
+  left: auto;
+
+  &:hover {
+    color: $color-yellow-green;
+  }
+}
