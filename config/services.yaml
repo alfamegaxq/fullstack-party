@@ -19,3 +19,17 @@ services:
         arguments:
             - "%kernel.project_dir%/busters.json"
             - "%%s?version=%%s"
+
+    github_client:
+        class: '\Github\Client'
+        factory: 'App\Service\Github\GithubClientFactory:createClient'
+
+    App\Service\Github\GithubClient:
+        public: true
+        arguments:
+            $client: '@github_client'
+
+    App\Service\Redis\RedisCacheManager:
+        public: true
+        arguments:
+            - '@snc_redis.default'

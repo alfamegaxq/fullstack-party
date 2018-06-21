@@ -3,11 +3,13 @@
   "license": "proprietary",
   "type": "project",
   "require": {
-    "squizlabs/php_codesniffer": "3.2.3",
-    "phpmd/phpmd": "@stable",
-    "slevomat/coding-standard": "~4.0",
     "php": "^7.2",
+    "knplabs/github-api": "^2.8",
+    "php-http/guzzle6-adapter": "^1.1",
+    "phpmd/phpmd": "@stable",
     "sensio/framework-extra-bundle": "^5.1",
+    "slevomat/coding-standard": "~4.0",
+    "squizlabs/php_codesniffer": "3.2.3",
     "symfony/asset": "^4.1",
     "symfony/console": "^4.1",
     "symfony/expression-language": "^4.1",
@@ -24,7 +26,9 @@
     "symfony/twig-bundle": "^4.1",
     "symfony/validator": "^4.1",
     "symfony/web-link": "^4.1",
-    "symfony/yaml": "^4.1"
+    "symfony/yaml": "^4.1",
+    "predis/predis": "1.1.*",
+    "snc/redis-bundle": "2.1.*"
   },
   "require-dev": {
     "symfony/debug-pack": "1.0.*",
