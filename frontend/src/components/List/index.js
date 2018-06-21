@@ -10,6 +10,45 @@ class List extends Component {
         this.props.loadIssues();
     }
 
+    getDatesDiff(date) {
+        const now = new Date();
+        const created = new Date(date);
+        const timeDiff = Math.abs(created.getTime() - now.getTime());
+
+        return Math.ceil(timeDiff / (1000 * 3600 * 24));
+    }
+
+    renderCardsList() {
+        let issues = [];
+
+        this.props.issues.map((issue) => {
+            issues.push(this.renderCard(issue));
+        });
+
+        return issues;
+    }
+
+    renderCard(issue) {
+        return (
+            <div key={issue.id} className="card">
+                <div className="card-header float-left mr-3">
+                    <span className="icon-exclamation d-inline-block"></span>
+                </div>
+                <div className="card-title float-left">
+                    <div className="row m-0">
+                        <h2>{issue.title}</h2>
+                    </div>
+                    <div className="row m-0">
+                        <small>#{issue.number} Opened {this.getDatesDiff(issue['created_at'])} days ago by <span className="username">{issue.user.login}</span></small>
+                    </div>
+                </div>
+                <div className="card-footer float-right ml-3">
+                    <span className="icon-chat d-inline-block"></span>{` `}{issue.comments}
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -23,25 +62,7 @@ class List extends Component {
                             </div>
                         </div>
                         <div className={`${styles['list-container']} row`}>
-                            <div className="card">
-                                <div className="card-header float-left mr-3">
-                                    <span className="icon-exclamation d-inline-block"></span>
-                                </div>
-                                <div className="card-title float-left">
-                                    <div className="row m-0">
-                                        <h2>[RFC] Deprecate the removal of "Bundle" suffix in twig paths</h2>
-                                    </div>
-                                    <div className="row m-0">
-                                        <small>#20011 Opened 3 days ago by <span className="username">bozerkins</span></small>
-                                    </div>
-                                </div>
-                                <div className="card-footer float-right ml-3">
-                                    <span className="icon-chat d-inline-block"></span>7
-                                </div>
-                            </div>
-                            <div className="card"></div>
-                            <div className="card"></div>
-                            <div className="card"></div>
+                            {this.renderCardsList()}
                         </div>
                     </div>
                     <div className={`${styles['image-container']} col-md p-0`}>
