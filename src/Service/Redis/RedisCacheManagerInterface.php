@@ -9,4 +9,5 @@ interface RedisCacheManagerInterface
     const KEY_USER_TOKEN = 'users:tokens:';
     const KEY_ISSUES = 'issues';
     const KEY_ONE_ISSUE = 'issue:';
+    const KEY_ISSUE_COMMENTS = 'comments:';
 }

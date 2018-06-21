@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Header from "../Parts/Header";
 import {bindActionCreators} from "redux";
-import {loadOneIssue} from "../../actions/IssuesActions";
+import {loadComments, loadOneIssue} from "../../actions/IssuesActions";
 import {connect} from "react-redux";
 import DateHelper from "../../helpers/DateHelper";
 
 class Details extends Component {
     componentWillMount() {
         this.props.loadOneIssue(this.props.match.params.id);
+        this.props.loadComments(this.props.match.params.id);
     }
 
     render() {
@@ -41,7 +42,8 @@ class Details extends Component {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        loadOneIssue
+        loadOneIssue,
+        loadComments
     }, dispatch);
 }
 

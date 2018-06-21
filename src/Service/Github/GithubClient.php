@@ -84,4 +84,14 @@ class GithubClient
     {
         return $this->client->issue()->show('knpLabs', 'php-github-api', $issueId);
     }
+
+    /**
+     * @param int $issueId
+     *
+     * @return array
+     */
+    public function findIssueComments(int $issueId): array
+    {
+        return $this->client->issue()->comments()->all('knpLabs', 'php-github-api', $issueId);
+    }
 }

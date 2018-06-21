@@ -54,4 +54,27 @@ class IssuesController extends Controller
 
         return $this->json(['data' => $issue]);
     }
+
+    /**
+     * @Route("/api/v1/issues/{issueId}/comments", name="api-one-issue-comments")
+     *
+     * @param int $issueId
+     *
+     * @return JsonResponse
+     */
+    public function issueComments(int $issueId): JsonResponse
+    {
+        $githubClient = $this->get(GithubClient::class);
+
+        $cacheManager = $this->get(RedisCacheManager::class);
+        $issue = $cacheManager->getCached(
+            RedisCacheManagerInterface::KEY_ISSUE_COMMENTS . $issueId,
+            function () use ($githubClient, $issueId) {
+                return $githubClient->findIssueComments($issueId);
+            },
+            RedisCacheManagerInterface::TTL_TEN_MINUTES
+        );
+
+        return $this->json(['data' => $issue]);
+    }
 }
