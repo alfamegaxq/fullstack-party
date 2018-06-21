@@ -17,7 +17,7 @@ class Header extends Component {
 
         return (
             <header className="white medium full position-relative">
-                <img src={`${process.env.REACT_APP_CDN_URL}/img/small-logo.png`} alt="testio" className="ml-3 center-abs-v"/>
+                <img src="/img/small-logo.png" alt="testio" className="ml-3 center-abs-v"/>
                 <a onClick={this.logout.bind(this)} className={`${styles.logout} float-right d-block center-abs-v mr-3`}><span className="d-inline-block icon-logout"></span> Logout</a>
             </header>
         );

@@ -46,13 +46,17 @@ class Details extends Component {
         );
     }
 
+    back() {
+        this.props.history.push('/issues');
+    }
+
     render() {
         return (
             <div>
                 <Header history={this.props.history}/>
                 <div className="container">
                     <div className="row mt-3 mb-3">
-                        <span className="icon-back"></span> Back to Issues
+                        <a onClick={this.back.bind(this)}><span className="icon-back d-inline-block"></span> Back to Issues</a>
                     </div>
                     <div className="row">
                         <div className="card">
