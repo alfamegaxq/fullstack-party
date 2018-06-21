@@ -11,8 +11,44 @@ class Details extends Component {
         this.props.loadComments(this.props.match.params.id);
     }
 
-    render() {
+    renderCommentsList() {
+        let comments = [];
+        this.props.comments.map((comment) => {
+            comments.push(this.renderComment(comment));
+        });
 
+        return comments;
+    }
+
+    renderAvatar(comment) {
+        if (!comment.user) {
+            return;
+        }
+
+        return (
+            <img src={comment.user['avatar_url']} alt={comment.user.login}/>
+        );
+    }
+
+    renderComment(comment) {
+        return (
+            <div className="row">
+                <div className="col-sm-1">
+                    {this.renderAvatar(comment)}
+                </div>
+                <div className="col-sm">
+                    <div className="card">
+                        <div className="bubble-header">
+                            {comment.user ? comment.user.login : ''} commented {DateHelper.getDatesDiff(comment['created_at'])} days ago
+                        </div>
+                        <div className="body">{comment.body}</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    render() {
         return (
             <div>
                 <Header/>
@@ -28,12 +64,7 @@ class Details extends Component {
                             {this.props.issue.user ? this.props.issue.user.login : ''} opened this issue {DateHelper.getDatesDiff(this.props.issue['created_at'])} days ago {this.props.issue.comments} comment
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-sm-1"></div>
-                        <div className="col-sm">
-                            <div className="card"></div>
-                        </div>
-                    </div>
+                    {this.renderCommentsList()}
                 </div>
             </div>
         );
@@ -50,6 +81,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         issue: state.IssuesReducer.selected,
+        comments: state.IssuesReducer.comments,
     }
 }
 
