@@ -24,8 +24,8 @@ class List extends Component {
 
     renderCard(issue) {
         return (
-            <div className="card">
-                <div key={issue.id} className="card-header float-left mr-3">
+            <div key={issue.id} className="card">
+                <div className="card-header float-left mr-3">
                     <span className="icon-exclamation d-inline-block"></span>
                 </div>
                 <div className="card-title float-left">
@@ -49,7 +49,7 @@ class List extends Component {
     }
 
     renderPage(nr) {
-        return <a href="javascript:void(0)" onClick={this.changePage.bind(this, nr)}>{nr}</a>;
+        return <a key={nr} onClick={this.changePage.bind(this, nr)}>{nr}</a>;
     }
 
     renderPagination() {
@@ -71,8 +71,8 @@ class List extends Component {
         } else {
             let pages = [];
             const currentPage = this.props.page;
-            if (currentPage != 1) {
-                pages.push(<a href="javascript:void(0)" onClick={this.changePage.bind(this, currentPage - 1)}>prev</a>);
+            if (currentPage !== 1) {
+                pages.push(<a key={'prev'} onClick={this.changePage.bind(this, currentPage - 1)}>prev</a>);
             }
 
             for (let i = 1; i <= 2; i++) {
@@ -90,7 +90,7 @@ class List extends Component {
             }
 
             if (currentPage + 2 < totalPages) {
-                pages.push(<span>...</span>);
+                pages.push(<span key={'null'}>...</span>);
             }
 
             for (let i = 2; i > 0; i--) {
@@ -100,7 +100,7 @@ class List extends Component {
             }
 
             if (currentPage < totalPages) {
-                pages.push(<a href="javascript:void(0)" onClick={this.changePage.bind(this, currentPage + 1)}>next</a>);
+                pages.push(<a key={'next'} onClick={this.changePage.bind(this, currentPage + 1)}>next</a>);
             }
 
             return pages;

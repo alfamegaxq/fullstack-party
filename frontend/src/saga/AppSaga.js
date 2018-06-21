@@ -9,7 +9,8 @@ import {
     LOAD_ONE_ISSUE,
     oneIssueLoaded
 } from "../actions/IssuesActions";
-import {LOAD_REPOSITORY, repositoryLoaded} from "../actions/RepositoryActions";
+import {LOAD_REPOSITORY, LOGIN, loginSuccess, repositoryLoaded} from "../actions/RepositoryActions";
+import qs from "querystring";
 
 function* loadIssues(action) {
     let page = action.page ? action.page : 1;
@@ -57,12 +58,26 @@ function* loadRepository(action) {
     yield put.resolve(repositoryLoaded(request));
 }
 
+function* login(action) {
+    const request = axios.post(
+        `${process.env.REACT_APP_API_URL}/v1/login`,
+        qs.stringify({token: action.token}),
+        {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        });
+    yield put.resolve(loginSuccess(request));
+}
+
 function* sagas() {
     yield takeEvery(LOAD_ISSUES, loadIssues);
     yield takeEvery(LOAD_ONE_ISSUE, loadOneIssue);
     yield takeEvery(LOAD_COMMENTS, loadComments);
     yield takeEvery(LOAD_REPOSITORY, loadRepository);
     yield takeEvery(CHANGE_PAGE, loadIssues);
+    yield takeEvery(LOGIN, login);
 }
 
 export default sagas;

@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class GithubClient
 {
+    const GITHUB_USERNAME = 'KnpLabs';
+    const GITHUB_REPOSITORY = 'php-github-api';
+
     /**
      * @var \Github\Client
      */
@@ -35,36 +38,21 @@ class GithubClient
     }
 
     /**
-     * @param string $username
-     * @param string $password
+     * @param string $accesstoken
      *
      * @return void
      */
-    public function login(string $username, ?string $password): void
+    public function login(string $accesstoken): void
     {
-        //@TODO fix login
-//        if ($this->session->has('githubUser') && $this->session->has('githubToken')) {
-//            $this->client->authenticate(
-//                $username,
-//                $password,
-//                \Github\Client::AUTH_HTTP_TOKEN
-//            );
-//        } else {
-//            $this->client->authenticate($username, $password, \Github\Client::AUTH_HTTP_PASSWORD);
-//
-//            if (!$this->cacheManager->has(RedisCacheManagerInterface::KEY_USER_TOKEN . $username)) {
-//                $token = $this->client->authorization()->create(['scopes' => ['repo', 'user'], 'note' => 'testio']);
-//                $token = $token['token'];
-//                $this->cacheManager->set(RedisCacheManagerInterface::KEY_USER_TOKEN . $username, $token);
-//            } else {
-//                $token = $this->cacheManager->get(RedisCacheManagerInterface::KEY_USER_TOKEN . $username);
-//            }
-//
-//            $this->session->set('githubToken', $token);
-//            $this->session->set('githubUser', $username);
-//        }
+        $this->session->set('githubToken', $accesstoken);
+    }
 
-        $this->client->authorization()->all();
+    /**
+     * @return bool
+     */
+    public function isUserAuthorized(): bool
+    {
+        return $this->session->has('githubToken');
     }
 
     /**
@@ -72,7 +60,7 @@ class GithubClient
      */
     public function findRepositoryData(): array
     {
-        return $this->client->repo()->show('KnpLabs', 'php-github-api');
+        return $this->client->repo()->show(self::GITHUB_USERNAME, self::GITHUB_REPOSITORY);
     }
 
     /**
@@ -82,9 +70,9 @@ class GithubClient
      */
     public function findIssues(int $page): array
     {
-        return $this->client->issue()->all('KnpLabs', 'php-github-api', [
+        return $this->client->issue()->all(self::GITHUB_USERNAME, self::GITHUB_REPOSITORY, [
             'page' => $page,
-            'per_page' => 4
+            'per_page' => 4,
         ]);
     }
 
@@ -95,7 +83,7 @@ class GithubClient
      */
     public function findOneIssue(int $issueId): array
     {
-        return $this->client->issue()->show('knpLabs', 'php-github-api', $issueId);
+        return $this->client->issue()->show(self::GITHUB_USERNAME, self::GITHUB_REPOSITORY, $issueId);
     }
 
     /**
@@ -105,6 +93,6 @@ class GithubClient
      */
     public function findIssueComments(int $issueId): array
     {
-        return $this->client->issue()->comments()->all('knpLabs', 'php-github-api', $issueId);
+        return $this->client->issue()->comments()->all(self::GITHUB_USERNAME, self::GITHUB_REPOSITORY, $issueId);
     }
 }

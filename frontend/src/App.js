@@ -3,14 +3,16 @@ import './App.css';
 import List from "./components/List";
 import {BrowserRouter, Route} from 'react-router-dom'
 import Details from "./components/Details";
+import Home from "./components/Home";
 
 class App extends Component {
     render() {
         return (
             <BrowserRouter>
                 <div>
-                    <Route exact path="/" component={List}/>
-                    <Route path="/issue/:id" component={Details}/>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/issues" component={List}/>
+                    <Route exact path="/issue/:id" component={Details}/>
                 </div>
             </BrowserRouter>
         );

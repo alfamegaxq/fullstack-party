@@ -13,9 +13,7 @@ class Details extends Component {
 
     renderCommentsList() {
         let comments = [];
-        this.props.comments.map((comment) => {
-            comments.push(this.renderComment(comment));
-        });
+        this.props.comments.map((comment) => comments.push(this.renderComment(comment)));
 
         return comments;
     }
