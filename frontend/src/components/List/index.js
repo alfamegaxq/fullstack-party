@@ -4,6 +4,7 @@ import styles from "./List.css";
 import {bindActionCreators} from "redux";
 import {loadIssues} from "../../actions/IssuesActions";
 import {connect} from "react-redux";
+import {Link} from 'react-router-dom'
 
 class List extends Component {
     componentWillMount() {
@@ -30,16 +31,17 @@ class List extends Component {
 
     renderCard(issue) {
         return (
-            <div key={issue.id} className="card">
+            <div className="card">
                 <div className="card-header float-left mr-3">
                     <span className="icon-exclamation d-inline-block"></span>
                 </div>
                 <div className="card-title float-left">
                     <div className="row m-0">
-                        <h2>{issue.title}</h2>
+                        <Link key={issue.id} to={`/issue/${issue.id}`}><h2>{issue.title}</h2></Link>
                     </div>
                     <div className="row m-0">
-                        <small>#{issue.number} Opened {this.getDatesDiff(issue['created_at'])} days ago by <span className="username">{issue.user.login}</span></small>
+                        <small>#{issue.number} Opened {this.getDatesDiff(issue['created_at'])} days ago by <span
+                            className="username">{issue.user.login}</span></small>
                     </div>
                 </div>
                 <div className="card-footer float-right ml-3">
@@ -58,7 +60,8 @@ class List extends Component {
                         <div className="row">
                             <div className="center-h">
                                 <span className="icon-open d-inline-block mr-1"></span><span>420 Open</span>
-                                <span className="icon-closed d-inline-block mr-1 ml-3"></span><span className="color-suva-grey">6.969 Closed</span>
+                                <span className="icon-closed d-inline-block mr-1 ml-3"></span><span
+                                className="color-suva-grey">6.969 Closed</span>
                             </div>
                         </div>
                         <div className={`${styles['list-container']} row`}>
@@ -68,7 +71,8 @@ class List extends Component {
                     <div className={`${styles['image-container']} col-md p-0`}>
                         <div className={styles.background}></div>
                         <div className={`${styles['page-title']} center-h position-relative`}>
-                            <h1>Full Stack Developer Task <small className="center-h mt-3">by <img src="/img/xsmall-logo.png" alt="testio"/></small></h1>
+                            <h1>Full Stack Developer Task <small className="center-h mt-3">by <img
+                                src="/img/xsmall-logo.png" alt="testio"/></small></h1>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import Header from "../Parts/Header";
-import styles from "./Details.css";
 
 export default class Details extends Component {
     render() {
+
+        //@TODO remove this
+        // console.log(this.props);
+
         return (
             <div>
                 <Header/>
