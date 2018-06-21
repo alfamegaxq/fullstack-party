@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import Header from "../Parts/Header";
+import {bindActionCreators} from "redux";
+import {loadOneIssue} from "../../actions/IssuesActions";
+import {connect} from "react-redux";
+import DateHelper from "../../helpers/DateHelper";
 
-export default class Details extends Component {
+class Details extends Component {
+    componentWillMount() {
+        this.props.loadOneIssue(this.props.match.params.id);
+    }
+
     render() {
-
-        //@TODO remove this
-        // console.log(this.props);
 
         return (
             <div>
@@ -16,9 +21,10 @@ export default class Details extends Component {
                     </div>
                     <div className="row">
                         <div className="card">
-                            <h1>Deprecate Symfony environemnt variables <span className="task-nr">#000001</span></h1>
+                            <h1>{this.props.issue.title} <span className="task-nr">#{this.props.issue.number}</span></h1>
                             <br/>
-                            <div className="btn"><span className="icon-open d-inline-block"></span>OPEN</div>
+                            <div className="btn"><span className="icon-open d-inline-block"></span>{this.props.issue.state}</div>
+                            {this.props.issue.user ? this.props.issue.user.login : ''} opened this issue {DateHelper.getDatesDiff(this.props.issue['created_at'])} days ago {this.props.issue.comments} comment
                         </div>
                     </div>
                     <div className="row">
@@ -32,3 +38,17 @@ export default class Details extends Component {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        loadOneIssue
+    }, dispatch);
+}
+
+function mapStateToProps(state) {
+    return {
+        issue: state.IssuesReducer.selected,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);

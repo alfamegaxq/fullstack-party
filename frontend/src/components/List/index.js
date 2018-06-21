@@ -5,18 +5,11 @@ import {bindActionCreators} from "redux";
 import {loadIssues} from "../../actions/IssuesActions";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom'
+import DateHelper from "../../helpers/DateHelper";
 
 class List extends Component {
     componentWillMount() {
         this.props.loadIssues();
-    }
-
-    getDatesDiff(date) {
-        const now = new Date();
-        const created = new Date(date);
-        const timeDiff = Math.abs(created.getTime() - now.getTime());
-
-        return Math.ceil(timeDiff / (1000 * 3600 * 24));
     }
 
     renderCardsList() {
@@ -32,15 +25,15 @@ class List extends Component {
     renderCard(issue) {
         return (
             <div className="card">
-                <div className="card-header float-left mr-3">
+                <div key={issue.id} className="card-header float-left mr-3">
                     <span className="icon-exclamation d-inline-block"></span>
                 </div>
                 <div className="card-title float-left">
                     <div className="row m-0">
-                        <Link key={issue.id} to={`/issue/${issue.id}`}><h2>{issue.title}</h2></Link>
+                        <Link to={`/issue/${issue.number}`}><h2>{issue.title}</h2></Link>
                     </div>
                     <div className="row m-0">
-                        <small>#{issue.number} Opened {this.getDatesDiff(issue['created_at'])} days ago by <span
+                        <small>#{issue.number} Opened {DateHelper.getDatesDiff(issue['created_at'])} days ago by <span
                             className="username">{issue.user.login}</span></small>
                     </div>
                 </div>

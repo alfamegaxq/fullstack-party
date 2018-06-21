@@ -1,5 +1,7 @@
 export const LOAD_ISSUES = 'LOAD_ISSUES';
 export const ISSUES_LOADED = 'ISSUES_LOADED';
+export const LOAD_ONE_ISSUE= 'LOAD_ONE_ISSUE';
+export const ONE_ISSUE_LOADED = 'ONE_ISSUE_LOADED';
 
 export const loadIssues = () => {
     return {
@@ -10,6 +12,20 @@ export const loadIssues = () => {
 export const issuesLoaded = (payload) => {
     return {
         type: ISSUES_LOADED,
+        payload
+    }
+};
+
+export const loadOneIssue = (id) => {
+    return {
+        type: LOAD_ONE_ISSUE,
+        id
+    }
+};
+
+export const oneIssueLoaded = (payload) => {
+    return {
+        type: ONE_ISSUE_LOADED,
         payload
     }
 };
