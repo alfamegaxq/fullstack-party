@@ -4,6 +4,7 @@ export const LOAD_ONE_ISSUE= 'LOAD_ONE_ISSUE';
 export const ONE_ISSUE_LOADED = 'ONE_ISSUE_LOADED';
 export const LOAD_COMMENTS= 'LOAD_COMMENTS';
 export const COMMENTS_LOADED = 'COMMENTS_LOADED';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
 
 export const loadIssues = () => {
     return {
@@ -43,5 +44,12 @@ export const commentsLoaded = (payload) => {
     return {
         type: COMMENTS_LOADED,
         payload
+    }
+};
+
+export const changePage = (page) => {
+    return {
+        type: CHANGE_PAGE,
+        page
     }
 };

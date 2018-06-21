@@ -70,9 +70,22 @@ class GithubClient
     /**
      * @return array
      */
-    public function findIssues(): array
+    public function findRepositoryData(): array
     {
-        return $this->client->issue()->all('KnpLabs', 'php-github-api');
+        return $this->client->repo()->show('KnpLabs', 'php-github-api');
+    }
+
+    /**
+     * @param int $page
+     *
+     * @return array
+     */
+    public function findIssues(int $page): array
+    {
+        return $this->client->issue()->all('KnpLabs', 'php-github-api', [
+            'page' => $page,
+            'per_page' => 4
+        ]);
     }
 
     /**

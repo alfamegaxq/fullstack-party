@@ -10,4 +10,5 @@ interface RedisCacheManagerInterface
     const KEY_ISSUES = 'issues';
     const KEY_ONE_ISSUE = 'issue:';
     const KEY_ISSUE_COMMENTS = 'comments:';
+    const KEY_REPOSITORY = 'repository:';
 }

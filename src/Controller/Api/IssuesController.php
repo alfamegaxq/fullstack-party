@@ -7,6 +7,7 @@ use App\Service\Redis\RedisCacheManager;
 use App\Service\Redis\RedisCacheManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IssuesController extends Controller
@@ -14,17 +15,20 @@ class IssuesController extends Controller
     /**
      * @Route("/api/v1/issues", name="api-issues")
      *
+     * @param Request $request
+     *
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $page = $request->query->get('page', 1) - 1;
         $githubClient = $this->get(GithubClient::class);
 
         $cacheManager = $this->get(RedisCacheManager::class);
         $issues = $cacheManager->getCached(
-            RedisCacheManagerInterface::KEY_ISSUES,
-            function () use ($githubClient) {
-                return $githubClient->findIssues();
+            RedisCacheManagerInterface::KEY_ISSUES . ':' . $page,
+            function () use ($githubClient, $page) {
+                return $githubClient->findIssues($page);
             },
             RedisCacheManagerInterface::TTL_TEN_MINUTES
         );

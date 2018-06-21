@@ -1,9 +1,10 @@
-import {COMMENTS_LOADED, ISSUES_LOADED, ONE_ISSUE_LOADED} from "../actions/IssuesActions";
+import {CHANGE_PAGE, COMMENTS_LOADED, ISSUES_LOADED, ONE_ISSUE_LOADED} from "../actions/IssuesActions";
 
 const initialState = {
     issues: [],
     selected: {},
-    comments: []
+    comments: [],
+    page: 1
 };
 
 const IssuesReducer = (state = initialState, action) => {
@@ -14,6 +15,8 @@ const IssuesReducer = (state = initialState, action) => {
             return {...state, selected: action.payload.data.data};
         case COMMENTS_LOADED:
             return {...state, comments: action.payload.data.data};
+        case CHANGE_PAGE:
+            return {...state, page: action.page};
         default:
             return state;
     }
