@@ -48,6 +48,14 @@ class GithubClient
     }
 
     /**
+     * @return void
+     */
+    public function logout(): void
+    {
+        $this->session->remove('githubToken');
+    }
+
+    /**
      * @return bool
      */
     public function isUserAuthorized(): bool

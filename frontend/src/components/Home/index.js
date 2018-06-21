@@ -16,7 +16,6 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.props.loggedIn);
         if (this.props.loggedIn) {
             this.props.history.push('/issues');
         }

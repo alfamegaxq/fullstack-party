@@ -111,7 +111,7 @@ class List extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header history={this.props.history}/>
                 <div className="row m-0">
                     <div className="col-md p-0">
                         <div className="row">

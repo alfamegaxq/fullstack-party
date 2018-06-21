@@ -49,7 +49,7 @@ class Details extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header history={this.props.history}/>
                 <div className="container">
                     <div className="row mt-3 mb-3">
                         <span className="icon-back"></span> Back to Issues
