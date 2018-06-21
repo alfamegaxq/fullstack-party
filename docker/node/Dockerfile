@@ -7,6 +7,8 @@ RUN  npm install -g gulp \
     && npm install -g yarn \
     && npm install -g create-react-app
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/frontend
 
 EXPOSE 3000
+
+CMD yarn start

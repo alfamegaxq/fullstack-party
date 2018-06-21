@@ -27,6 +27,10 @@ services:
       build:
           context: .
           dockerfile: docker/node/Dockerfile
+      expose:
+          - 3000
+      ports:
+          - "3000:3000"
       volumes:
           - .:/var/www/html
 

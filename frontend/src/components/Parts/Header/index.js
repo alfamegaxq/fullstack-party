@@ -5,8 +5,8 @@ export default class Header extends Component {
     render() {
         return (
             <header className="white medium full position-relative">
-                <img src="/img/small-logo.png" alt="testio" className="ml-3 center-abs-v"/>
-                <a href="#" className={`${styles.logout} float-right d-block center-abs-v mr-3`}><span className="d-inline-block icon-logout"></span> Logout</a>
+                <img src={`${process.env.REACT_APP_CDN_URL}/img/small-logo.png`} alt="testio" className="ml-3 center-abs-v"/>
+                <a href="/" className={`${styles.logout} float-right d-block center-abs-v mr-3`}><span className="d-inline-block icon-logout"></span> Logout</a>
             </header>
         );
     }

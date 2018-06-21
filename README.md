@@ -31,3 +31,8 @@ Coding standards
  * Turn on PHP Mess Detector in Settings | Editor | Inspections | PHP | PHP Mess Detector validation.
  * Select all validation options
  * Click OK to enable these new settings
+
+Known issues
+============
+
+* node docker container has permission issues, so docker needs to be built using sudo

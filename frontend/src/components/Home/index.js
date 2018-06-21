@@ -10,7 +10,7 @@ export default class Home extends Component {
                     <div className="container p-0">
                         <div className="row m-0">
                             <div className="col-sm p-0">
-                                <img src="/img/logo.png" className="center-h mb-4" alt="testio"/>
+                                <img src={`${process.env.REACT_APP_CDN_URL}/img/logo.png`} className="center-h mb-4" alt="testio"/>
                             </div>
                         </div>
                         <div className="row m-0">

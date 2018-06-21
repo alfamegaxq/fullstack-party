@@ -11,7 +11,7 @@ import {
 
 function* loadIssues(action) {
     const request = axios.get(
-        `/api/v1/issues`,
+        `${process.env.REACT_APP_API_URL}/v1/issues`,
         {
             headers: {'X-Requested-With': 'XMLHttpRequest'},
             withCredentials: true
@@ -22,7 +22,7 @@ function* loadIssues(action) {
 
 function* loadOneIssue(action) {
     const request = axios.get(
-        `/api/v1/issues/${action.id}`,
+        `${process.env.REACT_APP_API_URL}/v1/issues/${action.id}`,
         {
             headers: {'X-Requested-With': 'XMLHttpRequest'},
             withCredentials: true
@@ -33,7 +33,7 @@ function* loadOneIssue(action) {
 
 function* loadComments(action) {
     const request = axios.get(
-        `/api/v1/issues/${action.id}/comments`,
+        `${process.env.REACT_APP_API_URL}/v1/issues/${action.id}/comments`,
         {
             headers: {'X-Requested-With': 'XMLHttpRequest'},
             withCredentials: true

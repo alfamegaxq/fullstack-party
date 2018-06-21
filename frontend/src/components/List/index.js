@@ -15,9 +15,7 @@ class List extends Component {
     renderCardsList() {
         let issues = [];
 
-        this.props.issues.map((issue) => {
-            issues.push(this.renderCard(issue));
-        });
+        this.props.issues.map((issue) => issues.push(this.renderCard(issue)));
 
         return issues;
     }
@@ -64,8 +62,7 @@ class List extends Component {
                     <div className={`${styles['image-container']} col-md p-0`}>
                         <div className={styles.background}></div>
                         <div className={`${styles['page-title']} center-h position-relative`}>
-                            <h1>Full Stack Developer Task <small className="center-h mt-3">by <img
-                                src="/img/xsmall-logo.png" alt="testio"/></small></h1>
+                            <h1>Full Stack Developer Task <small className="center-h mt-3">by <img src={`${process.env.REACT_APP_CDN_URL}/img/xsmall-logo.png`} alt="testio"/></small></h1>
                         </div>
                     </div>
                 </div>
