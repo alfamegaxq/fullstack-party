@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import Header from "../Parts/Header";
 import styles from "./List.css";
+import {bindActionCreators} from "redux";
+import {loadIssues} from "../../actions/IssuesActions";
+import {connect} from "react-redux";
 
-export default class List extends Component {
+class List extends Component {
+    componentWillMount() {
+        this.props.loadIssues();
+    }
+
     render() {
         return (
             <div>
@@ -48,3 +55,17 @@ export default class List extends Component {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        loadIssues
+    }, dispatch);
+}
+
+function mapStateToProps(state) {
+    return {
+        issues: state.IssuesReducer.issues,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

@@ -29,6 +29,6 @@ class IssuesController extends Controller
             RedisCacheManagerInterface::TTL_TEN_MINUTES
         );
 
-        return $this->json($issues);
+        return $this->json(['data' => $issues]);
     }
 }
