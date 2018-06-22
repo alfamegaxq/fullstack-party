@@ -131,10 +131,7 @@ class List extends Component {
             <div>
                 <div className="row mt-4 mr-0 ml-0">
                     <div className="center-h">
-                                <span
-                                    className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
-                        <span className="icon-closed d-inline-block mr-1 ml-3"></span><span
-                        className="color-suva-grey">@TODO Closed</span>
+                        <span className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
                     </div>
                 </div>
                 <div className={`${styles['list-container']} row`}>

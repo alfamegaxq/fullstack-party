@@ -68,10 +68,7 @@ class GithubClient
      */
     public function findRepositoryData(): array
     {
-        $repositoryData = $this->client->repo()->show(self::GITHUB_USERNAME, self::GITHUB_REPOSITORY);
-        $repositoryData['closed_issues'] = $this->findClosedIssuesCount();
-
-        return $repositoryData;
+        return $this->client->repo()->show(self::GITHUB_USERNAME, self::GITHUB_REPOSITORY);
     }
 
     /**
@@ -85,28 +82,6 @@ class GithubClient
             'page' => $page,
             'per_page' => 4,
         ]);
-    }
-
-    /**
-     * @return int
-     */
-    public function findClosedIssuesCount(): int
-    {
-        $total = 0;
-//        do {
-//            $issues = $this->client->issue()->all(
-//                self::GITHUB_USERNAME,
-//                self::GITHUB_REPOSITORY,
-//                [
-//                    'state' => 'closed',
-//                    'page' => 2,
-//                    'per_page' => 100,
-//                ]
-//            );
-//            $total += count($issues);
-//        } while (!empty($issues));
-//@TODO get last page from meta
-        return $total;
     }
 
     /**
