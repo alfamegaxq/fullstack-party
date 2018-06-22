@@ -18,6 +18,7 @@ gulp.task('sprites', function () {
         imgName: 'sprites.png',
         cssName: 'sprites.css',
         imgPath: '/assets/sprites/sprites.png',
+        algorithm: 'diagonal'
     }));
 
     return spriteData.pipe(gulp.dest('frontend/public/assets/sprites'));
