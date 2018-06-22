@@ -13,6 +13,10 @@ class Details extends Component {
     }
 
     renderCommentsList() {
+        if (this.props.commentsLoading) {
+            return <img src="/loader.gif" alt="loading" className="mx-auto d-block" />;
+        }
+
         let comments = [];
         this.props.comments.map((comment) => comments.push(this.renderComment(comment)));
 
@@ -51,6 +55,26 @@ class Details extends Component {
         this.props.history.push('/issues');
     }
 
+    renderOneIssue() {
+        if (this.props.issueLoading) {
+            return <img src="/loader.gif" alt="loading" className="mx-auto d-block" />;
+        }
+
+        return (
+            <div className="card mt-0">
+                <h1 className={styles.title}>{this.props.issue.title} <span className="task-nr">#{this.props.issue.number}</span></h1>
+                <br/>
+                <div className={`${styles['btn-status']} btn`}>
+                    <div className="btn-container">
+                        <span className="btn-icon icon-open-white d-inline-block"></span>
+                        <span>{this.props.issue.state}</span>
+                    </div>
+                </div>
+                <span className="username">{this.props.issue.user ? this.props.issue.user.login : ''}</span> opened this issue {DateHelper.getDatesDiff(this.props.issue['created_at'])} days ago {this.props.issue.comments} comment
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -60,17 +84,7 @@ class Details extends Component {
                         <a onClick={this.back.bind(this)}><span className="icon-back d-inline-block"></span> <span className="color-citrus">Back to Issues</span></a>
                     </div>
                     <div className="row">
-                        <div className="card mt-0">
-                            <h1 className={styles.title}>{this.props.issue.title} <span className="task-nr">#{this.props.issue.number}</span></h1>
-                            <br/>
-                            <div className={`${styles['btn-status']} btn`}>
-                                <div className="btn-container">
-                                    <span className="btn-icon icon-open-white d-inline-block"></span>
-                                    <span>{this.props.issue.state}</span>
-                                </div>
-                            </div>
-                            <span className="username">{this.props.issue.user ? this.props.issue.user.login : ''}</span> opened this issue {DateHelper.getDatesDiff(this.props.issue['created_at'])} days ago {this.props.issue.comments} comment
-                        </div>
+                        {this.renderOneIssue()}
                     </div>
                     {this.renderCommentsList()}
                 </div>
@@ -90,6 +104,8 @@ function mapStateToProps(state) {
     return {
         issue: state.IssuesReducer.selected,
         comments: state.IssuesReducer.comments,
+        commentsLoading: state.IssuesReducer.commentsLoading,
+        issueLoading: state.IssuesReducer.oneIssueLoading,
     }
 }
 

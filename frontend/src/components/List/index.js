@@ -120,24 +120,38 @@ class List extends Component {
         }
     }
 
+    renderIssues() {
+        if (this.props.issuesLoading) {
+            return (
+                <img src="/loader.gif" alt="loading" className="mx-auto d-block" />
+            );
+        }
+
+        return (
+            <div>
+                <div className="row mt-4 mr-0 ml-0">
+                    <div className="center-h">
+                                <span
+                                    className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
+                        <span className="icon-closed d-inline-block mr-1 ml-3"></span><span
+                        className="color-suva-grey">@TODO Closed</span>
+                    </div>
+                </div>
+                <div className={`${styles['list-container']} row`}>
+                    {this.renderCardsList()}
+                </div>
+                {this.renderPagination()}
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
                 <Header history={this.props.history}/>
                 <div className="row m-0">
                     <div className="col-md p-0">
-                        <div className="row mt-4 mr-0 ml-0">
-                            <div className="center-h">
-                                <span
-                                    className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
-                                <span className="icon-closed d-inline-block mr-1 ml-3"></span><span
-                                className="color-suva-grey">@TODO Closed</span>
-                            </div>
-                        </div>
-                        <div className={`${styles['list-container']} row`}>
-                            {this.renderCardsList()}
-                        </div>
-                        {this.renderPagination()}
+                        {this.renderIssues()}
                     </div>
                     <div className={`${styles['image-container']} col-md p-0 d-none d-lg-block d-xl-block`}>
                         <div className={styles.background}></div>
@@ -163,6 +177,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         issues: state.IssuesReducer.issues,
+        issuesLoading: state.IssuesReducer.issuesLoading,
         page: state.IssuesReducer.page,
         repository: state.RepositoryReducer.info,
     }
