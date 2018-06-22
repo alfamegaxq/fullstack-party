@@ -32,11 +32,11 @@ class Details extends Component {
     renderComment(comment) {
         return (
             <div className="row">
-                <div className="col-sm-1">
+                <div className="col-sm-1 mt-3">
                     {this.renderAvatar(comment)}
                 </div>
-                <div className="col-sm">
-                    <div className="card">
+                <div className="col-sm pr-0">
+                    <div className="card mt-3">
                         <div className="bubble-header">
                             <span className="username">{comment.user ? comment.user.login : ''}</span> commented {DateHelper.getDatesDiff(comment['created_at'])} days ago
                         </div>
@@ -57,13 +57,18 @@ class Details extends Component {
                 <Header history={this.props.history}/>
                 <div className="container">
                     <div className="row mt-3 mb-3">
-                        <a onClick={this.back.bind(this)}><span className="icon-back d-inline-block"></span> Back to Issues</a>
+                        <a onClick={this.back.bind(this)}><span className="icon-back d-inline-block"></span> <span className="color-citrus">Back to Issues</span></a>
                     </div>
                     <div className="row">
-                        <div className="card">
+                        <div className="card mt-0">
                             <h1 className={styles.title}>{this.props.issue.title} <span className="task-nr">#{this.props.issue.number}</span></h1>
                             <br/>
-                            <div className="btn"><span className="icon-open d-inline-block"></span>{this.props.issue.state}</div>
+                            <div className={`${styles['btn-status']} btn`}>
+                                <div className="btn-container">
+                                    <span className="btn-icon icon-open-white d-inline-block"></span>
+                                    <span>{this.props.issue.state}</span>
+                                </div>
+                            </div>
                             <span className="username">{this.props.issue.user ? this.props.issue.user.login : ''}</span> opened this issue {DateHelper.getDatesDiff(this.props.issue['created_at'])} days ago {this.props.issue.comments} comment
                         </div>
                     </div>
