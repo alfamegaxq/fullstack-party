@@ -32,10 +32,10 @@ class Details extends Component {
     renderComment(comment) {
         return (
             <div className="row">
-                <div className="col-sm-1 mt-3">
+                <div className="col-sm-3 col-md-2 col-lg-1 mt-3">
                     {this.renderAvatar(comment)}
                 </div>
-                <div className="col-sm pr-0">
+                <div className="col-sm-9 col-md-10 col-lg-11 pr-0">
                     <div className="card mt-3">
                         <div className="bubble-header">
                             <span className="username">{comment.user ? comment.user.login : ''}</span> commented {DateHelper.getDatesDiff(comment['created_at'])} days ago
