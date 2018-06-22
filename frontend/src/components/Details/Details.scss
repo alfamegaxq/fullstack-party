@@ -1,0 +1,14 @@
+@import '../../styles/_variables.scss';
+
+:local(.avatar) {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+:local(.title) {
+  color: $color-mine-shaft;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 30px;
+}

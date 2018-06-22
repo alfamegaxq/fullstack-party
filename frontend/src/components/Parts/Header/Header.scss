@@ -26,6 +26,8 @@ header {
   left: auto;
 
   &:hover {
-    color: $color-yellow-green;
+    span {
+      color: $color-yellow-green;
+    }
   }
 }

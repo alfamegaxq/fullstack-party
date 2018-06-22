@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
     {
         $this->get(GithubClient::class)->login($request->request->get('token'));
 
-        return $this->json([]);
+        return $this->json(['data' => true]);
     }
 
     /**
@@ -33,6 +33,6 @@ class AuthenticationController extends Controller
     {
         $this->get(GithubClient::class)->logout();
 
-        return $this->json([]);
+        return $this->json(['data' => false]);
     }
 }

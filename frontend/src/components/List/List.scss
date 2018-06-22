@@ -34,3 +34,14 @@
 :local(.list-container) {
   margin: 20px;
 }
+
+:local(.comment-count) {
+  font-size: 13px;
+  top: -5px;
+  left: 3px;
+  position: relative;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

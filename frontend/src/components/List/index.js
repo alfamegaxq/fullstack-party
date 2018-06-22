@@ -29,16 +29,16 @@ class List extends Component {
                     <span className="icon-exclamation d-inline-block"></span>
                 </div>
                 <div className="card-title float-left">
-                    <div className="row m-0">
+                    <div className="row m-0 lh-14">
                         <Link to={`/issue/${issue.number}`}><h2>{issue.title}</h2></Link>
                     </div>
-                    <div className="row m-0">
+                    <div className="row m-0 mt-1">
                         <small>#{issue.number} Opened {DateHelper.getDatesDiff(issue['created_at'])} days ago by <span
                             className="username">{issue.user.login}</span></small>
                     </div>
                 </div>
                 <div className="card-footer float-right ml-3">
-                    <span className="icon-chat d-inline-block"></span>{` `}{issue.comments}
+                    <span className="icon-chat d-inline-block"></span>{` `}<span className={styles['comment-count']}>{issue.comments}</span>
                 </div>
             </div>
         );
@@ -114,7 +114,7 @@ class List extends Component {
                 <Header history={this.props.history}/>
                 <div className="row m-0">
                     <div className="col-md p-0">
-                        <div className="row">
+                        <div className="row mt-4">
                             <div className="center-h">
                                 <span className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
                                 <span className="icon-closed d-inline-block mr-1 ml-3"></span><span

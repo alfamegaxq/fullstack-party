@@ -74,6 +74,7 @@ function* login(action) {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
+            withCredentials: true
         });
     yield put.resolve(loginSuccess(request));
 }
@@ -87,6 +88,7 @@ function* logout(action) {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
+            withCredentials: true
         });
     yield put.resolve(logoutSuccess(request));
 }

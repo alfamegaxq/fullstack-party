@@ -9,16 +9,17 @@ class Header extends Component {
         this.props.logout();
     }
 
-    render() {
-        console.log(this.props);
+    componentDidUpdate() {
         if (!this.props.loggedIn) {
             this.props.history.push('/');
         }
+    }
 
+    render() {
         return (
             <header className="white medium full position-relative">
                 <img src="/img/small-logo.png" alt="testio" className="ml-3 center-abs-v"/>
-                <a onClick={this.logout.bind(this)} className={`${styles.logout} float-right d-block center-abs-v mr-3`}><span className="d-inline-block icon-logout"></span> Logout</a>
+                <a onClick={this.logout.bind(this)} className={`${styles.logout} float-right d-block center-abs-v mr-3`}><span className="d-inline-block icon-logout"></span> <span>Logout</span></a>
             </header>
         );
     }

@@ -25,9 +25,10 @@ export const login = (token) => {
     }
 };
 
-export const loginSuccess = () => {
+export const loginSuccess = (payload) => {
     return {
         type: LOGIN_SUCCESS,
+        payload
     }
 };
 
@@ -38,8 +39,9 @@ export const logout = () => {
     }
 };
 
-export const logoutSuccess = () => {
+export const logoutSuccess = (payload) => {
     return {
         type: LOGOUT_SUCCESS,
+        payload
     }
 };

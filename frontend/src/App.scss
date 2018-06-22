@@ -25,3 +25,19 @@ body, html {
 a {
   cursor: pointer;
 }
+
+.username {
+  color: $color-atlantis;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h2 {
+  color: $color-mine-shaft;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 30px;
+  margin-top: -8px;
+}

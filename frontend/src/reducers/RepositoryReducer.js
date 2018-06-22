@@ -10,9 +10,9 @@ const RepositoryReducer = (state = initialState, action) => {
         case REPOSIOTRY_LOADED:
             return {...state, info: action.payload.data.data};
         case LOGIN_SUCCESS:
-            return {...state, loggedIn: true};
+            return {...state, loggedIn: action.payload.data.data};
         case LOGOUT_SUCCESS:
-            return {...state, loggedIn: false};
+            return {...state, loggedIn: action.payload.data.data};
         default:
             return state;
     }

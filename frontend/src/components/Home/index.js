@@ -15,11 +15,13 @@ class Home extends Component {
         window.location.href= `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}`;
     }
 
-    render() {
+    componentDidUpdate() {
         if (this.props.loggedIn) {
             this.props.history.push('/issues');
         }
+    }
 
+    render() {
         return (
             <div className={styles.container}>
                 <div className={styles.background}></div>
