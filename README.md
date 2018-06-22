@@ -36,3 +36,4 @@ Known issues
 ============
 
 * node docker container has permission issues, so docker needs to be built using sudo
+* after refreshing page user needs to log in again. need to persist state to local storage, or save code to cookie and retry login

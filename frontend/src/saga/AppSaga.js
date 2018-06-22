@@ -1,4 +1,4 @@
-import {put, takeEvery} from 'redux-saga/effects'
+import {put, select, takeEvery} from 'redux-saga/effects'
 import axios from "axios/index";
 import {
     CHANGE_PAGE,
@@ -19,7 +19,23 @@ import {
 } from "../actions/RepositoryActions";
 import qs from "querystring";
 
+function isAuthenticated(state) {
+    if (state.RepositoryReducer.loggedIn === false) {
+        window.location.replace('/');
+
+        return false;
+    }
+
+    return true;
+}
+
 function* loadIssues(action) {
+    const state = yield select();
+
+    if (!isAuthenticated(state)) {
+        return;
+    }
+
     let page = action.page ? action.page : 1;
 
     const request = axios.get(
@@ -33,6 +49,12 @@ function* loadIssues(action) {
 }
 
 function* loadOneIssue(action) {
+    const state = yield select();
+
+    if (!isAuthenticated(state)) {
+        return;
+    }
+
     const request = axios.get(
         `${process.env.REACT_APP_API_URL}/v1/issues/${action.id}`,
         {
@@ -44,6 +66,12 @@ function* loadOneIssue(action) {
 }
 
 function* loadComments(action) {
+    const state = yield select();
+
+    if (!isAuthenticated(state)) {
+        return;
+    }
+
     const request = axios.get(
         `${process.env.REACT_APP_API_URL}/v1/issues/${action.id}/comments`,
         {
@@ -55,6 +83,12 @@ function* loadComments(action) {
 }
 
 function* loadRepository(action) {
+    const state = yield select();
+
+    if (!isAuthenticated(state)) {
+        return;
+    }
+
     const request = axios.get(
         `${process.env.REACT_APP_API_URL}/v1/repository`,
         {
@@ -80,6 +114,12 @@ function* login(action) {
 }
 
 function* logout(action) {
+    const state = yield select();
+
+    if (!isAuthenticated(state)) {
+        return;
+    }
+
     const request = axios.post(
         `${process.env.REACT_APP_API_URL}/v1/logout`,
         qs.stringify({}),
@@ -91,6 +131,8 @@ function* logout(action) {
             withCredentials: true
         });
     yield put.resolve(logoutSuccess(request));
+
+    action.history.push('/');
 }
 
 function* sagas() {

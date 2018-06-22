@@ -33,9 +33,10 @@ export const loginSuccess = (payload) => {
 };
 
 
-export const logout = () => {
+export const logout = (history) => {
     return {
         type: LOGOUT,
+        history
     }
 };
 

@@ -35,3 +35,9 @@
     }
   }
 }
+
+:local(.back) {
+  &:hover {
+    text-decoration: underline;
+  }
+}

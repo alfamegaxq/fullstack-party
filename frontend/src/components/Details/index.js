@@ -35,7 +35,7 @@ class Details extends Component {
 
     renderComment(comment) {
         return (
-            <div className="row">
+            <div key={comment.id} className="row">
                 <div className="col-sm-3 col-md-2 col-lg-1 mt-3">
                     {this.renderAvatar(comment)}
                 </div>
@@ -81,7 +81,7 @@ class Details extends Component {
                 <Header history={this.props.history}/>
                 <div className="container">
                     <div className="row mt-3 mb-3">
-                        <a onClick={this.back.bind(this)}><span className="icon-back d-inline-block"></span> <span className="color-citrus">Back to Issues</span></a>
+                        <a onClick={this.back.bind(this)}><span className="icon-back d-inline-block"></span> <span className={`${styles.back} color-citrus`}>Back to Issues</span></a>
                     </div>
                     <div className="row">
                         {this.renderOneIssue()}

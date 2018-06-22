@@ -96,7 +96,7 @@ class List extends Component {
             }
 
             if (currentPage + 2 < totalPages) {
-                pages.push(<li className="page-item d-none d-sm-none d-md-block"><span className="skip" key={'null'}>...</span></li>);
+                pages.push(<li key={'null'} className="page-item d-none d-sm-none d-md-block"><span className="skip">...</span></li>);
             }
 
             //2 last pages

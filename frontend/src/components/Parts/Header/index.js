@@ -6,18 +6,12 @@ import {connect} from "react-redux";
 
 class Header extends Component {
     logout() {
-        this.props.logout();
-    }
-
-    componentDidUpdate() {
-        if (!this.props.loggedIn) {
-            this.props.history.push('/');
-        }
+        this.props.logout(this.props.history);
     }
 
     render() {
         return (
-            <header className="white medium full position-relative">
+            <header className="white medium full position-relative b-color-mercury">
                 <img src="/img/small-logo.png" alt="testio" className="ml-3 center-abs-v"/>
                 <a onClick={this.logout.bind(this)} className={`${styles.logout} float-right d-block center-abs-v mr-3`}><span className="d-inline-block icon-logout"></span> <span>Logout</span></a>
             </header>
