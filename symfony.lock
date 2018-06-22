@@ -116,6 +116,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.0"
     },
+    "pdepend/pdepend": {
+        "version": "2.5.2"
+    },
     "php-http/cache-plugin": {
         "version": "v1.5.0"
     },
@@ -149,6 +152,9 @@
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
     },
+    "phpmd/phpmd": {
+        "version": "2.6.0"
+    },
     "predis/predis": {
         "version": "v1.1.1"
     },
@@ -179,6 +185,9 @@
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
     },
+    "slevomat/coding-standard": {
+        "version": "4.6.2"
+    },
     "snc/redis-bundle": {
         "version": "2.0",
         "recipe": {
@@ -187,6 +196,9 @@
             "version": "2.0",
             "ref": "e9c58bfc414cfb7f06e8e5ae9f589868498f5d6a"
         }
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.2.3"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
