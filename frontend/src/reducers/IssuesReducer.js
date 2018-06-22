@@ -4,7 +4,7 @@ const initialState = {
     issues: [],
     selected: {},
     comments: [],
-    page: 1
+    page: 1,
 };
 
 const IssuesReducer = (state = initialState, action) => {

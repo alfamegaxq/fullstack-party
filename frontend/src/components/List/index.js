@@ -25,21 +25,23 @@ class List extends Component {
     renderCard(issue) {
         return (
             <div key={issue.id} className="card">
-                <div className="card-header float-left mr-3">
-                    <span className="icon-exclamation d-inline-block"></span>
-                </div>
-                <div className="card-title float-left">
-                    <div className="row m-0 lh-14">
-                        <Link to={`/issue/${issue.number}`}><h2>{issue.title}</h2></Link>
+                <div className="row">
+                    <div className="card-header col-sm-1 mr-3">
+                        <span className="icon-exclamation d-inline-block"></span>
                     </div>
-                    <div className="row m-0 mt-1">
-                        <small>#{issue.number} Opened {DateHelper.getDatesDiff(issue['created_at'])} days ago by <span
-                            className="username">{issue.user.login}</span></small>
+                    <div className="card-title col-sm">
+                        <div className="row m-0 lh-14">
+                            <Link to={`/issue/${issue.number}`}><h2>{issue.title}</h2></Link>
+                        </div>
+                        <div className="row m-0 mt-1">
+                            <small>#{issue.number} Opened {DateHelper.getDatesDiff(issue['created_at'])} days ago by <span
+                                className="username">{issue.user.login}</span></small>
+                        </div>
                     </div>
-                </div>
-                <div className="card-footer float-right ml-3">
-                    <span className="icon-chat d-inline-block"></span>{` `}<span
-                    className={styles['comment-count']}>{issue.comments}</span>
+                    <div className="card-footer col-sm-2 ml-3 text-right">
+                        <span className="icon-chat d-inline-block"></span>{` `}<span
+                        className={styles['comment-count']}>{issue.comments}</span>
+                    </div>
                 </div>
             </div>
         );
@@ -50,7 +52,7 @@ class List extends Component {
     }
 
     renderPage(nr, active) {
-        return <li key={nr} className={`page-item ${active ? 'active' : ''}`}><a className="page-link" onClick={this.changePage.bind(this, nr)}>{nr}</a></li>;
+        return <li key={nr} className={`page-item ${active ? 'active' : 'd-none d-sm-none d-md-block'}`}><a className="page-link" onClick={this.changePage.bind(this, nr)}>{nr}</a></li>;
     }
 
     renderPagination() {
@@ -94,7 +96,7 @@ class List extends Component {
             }
 
             if (currentPage + 2 < totalPages) {
-                pages.push(<li className="page-item"><span className="skip" key={'null'}>...</span></li>);
+                pages.push(<li className="page-item d-none d-sm-none d-md-block"><span className="skip" key={'null'}>...</span></li>);
             }
 
             //2 last pages
@@ -116,7 +118,6 @@ class List extends Component {
                 </nav>
             );
         }
-
     }
 
     render() {
@@ -125,7 +126,7 @@ class List extends Component {
                 <Header history={this.props.history}/>
                 <div className="row m-0">
                     <div className="col-md p-0">
-                        <div className="row mt-4">
+                        <div className="row mt-4 mr-0 ml-0">
                             <div className="center-h">
                                 <span
                                     className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
@@ -138,7 +139,7 @@ class List extends Component {
                         </div>
                         {this.renderPagination()}
                     </div>
-                    <div className={`${styles['image-container']} col-md p-0`}>
+                    <div className={`${styles['image-container']} col-md p-0 d-none d-lg-block d-xl-block`}>
                         <div className={styles.background}></div>
                         <div className={`${styles['page-title']} center-h position-relative`}>
                             <h1>Full Stack Developer Task <small className="center-h mt-3">by <img
