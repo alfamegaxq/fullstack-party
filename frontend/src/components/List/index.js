@@ -38,7 +38,8 @@ class List extends Component {
                     </div>
                 </div>
                 <div className="card-footer float-right ml-3">
-                    <span className="icon-chat d-inline-block"></span>{` `}<span className={styles['comment-count']}>{issue.comments}</span>
+                    <span className="icon-chat d-inline-block"></span>{` `}<span
+                    className={styles['comment-count']}>{issue.comments}</span>
                 </div>
             </div>
         );
@@ -48,8 +49,8 @@ class List extends Component {
         this.props.changePage(nr);
     }
 
-    renderPage(nr) {
-        return <a key={nr} onClick={this.changePage.bind(this, nr)}>{nr}</a>;
+    renderPage(nr, active) {
+        return <li key={nr} className={`page-item ${active ? 'active' : ''}`}><a className="page-link" onClick={this.changePage.bind(this, nr)}>{nr}</a></li>;
     }
 
     renderPagination() {
@@ -72,17 +73,20 @@ class List extends Component {
             let pages = [];
             const currentPage = this.props.page;
             if (currentPage !== 1) {
-                pages.push(<a key={'prev'} onClick={this.changePage.bind(this, currentPage - 1)}>prev</a>);
+                pages.push(<li key={'prev'} className="page-item"><a className="page-link-nav mr" onClick={this.changePage.bind(this, currentPage - 1)}>prev</a></li>);
             }
 
-            for (let i = 1; i <= 2; i++) {
+            //2 previous pages
+            for (let i = 2; i >= 1; i--) {
                 if (currentPage - i > 0) {
                     pages.push(this.renderPage(currentPage - i));
                 }
             }
 
-            pages.push(this.renderPage(currentPage));
+            //current page
+            pages.push(this.renderPage(currentPage, true));
 
+            //2 next pages
             for (let i = 1; i <= 2; i++) {
                 if (currentPage + i <= totalPages) {
                     pages.push(this.renderPage(currentPage + i));
@@ -90,20 +94,27 @@ class List extends Component {
             }
 
             if (currentPage + 2 < totalPages) {
-                pages.push(<span key={'null'}>...</span>);
+                pages.push(<li className="page-item"><span className="skip" key={'null'}>...</span></li>);
             }
 
+            //2 last pages
             for (let i = 2; i > 0; i--) {
-                if (totalPages - i > currentPage + 2) {
-                    pages.push(this.renderPage(totalPages - i));
+                if (totalPages - i >= currentPage + 2) {
+                    pages.push(this.renderPage(totalPages - i + 1));
                 }
             }
 
             if (currentPage < totalPages) {
-                pages.push(<a key={'next'} onClick={this.changePage.bind(this, currentPage + 1)}>next</a>);
+                pages.push(<li key={'next'} className="page-item"><a className="page-link-nav ml" onClick={this.changePage.bind(this, currentPage + 1)}>next</a></li>);
             }
 
-            return pages;
+            return (
+                <nav aria-label="Page navigation example">
+                    <ul className="pagination justify-content-center">
+                        {pages}
+                    </ul>
+                </nav>
+            );
         }
 
     }
@@ -116,7 +127,8 @@ class List extends Component {
                     <div className="col-md p-0">
                         <div className="row mt-4">
                             <div className="center-h">
-                                <span className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
+                                <span
+                                    className="icon-open d-inline-block mr-1"></span><span>{this.props.repository['open_issues_count']} Open</span>
                                 <span className="icon-closed d-inline-block mr-1 ml-3"></span><span
                                 className="color-suva-grey">@TODO Closed</span>
                             </div>
@@ -124,14 +136,13 @@ class List extends Component {
                         <div className={`${styles['list-container']} row`}>
                             {this.renderCardsList()}
                         </div>
-                        <div className="pagination">
-                            {this.renderPagination()}
-                        </div>
+                        {this.renderPagination()}
                     </div>
                     <div className={`${styles['image-container']} col-md p-0`}>
                         <div className={styles.background}></div>
                         <div className={`${styles['page-title']} center-h position-relative`}>
-                            <h1>Full Stack Developer Task <small className="center-h mt-3">by <img src="/img/xsmall-logo.png" alt="testio"/></small></h1>
+                            <h1>Full Stack Developer Task <small className="center-h mt-3">by <img
+                                src="/img/xsmall-logo.png" alt="testio"/></small></h1>
                         </div>
                     </div>
                 </div>

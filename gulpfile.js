@@ -24,3 +24,7 @@ gulp.task('sprites', function () {
 });
 
 gulp.task('default', ['sass', 'sprites']);
+
+gulp.task('watch:sass', function () {
+    return gulp.watch(['frontend/src/**/*.scss'], ['sass']);
+});
