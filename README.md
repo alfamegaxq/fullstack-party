@@ -32,6 +32,19 @@ Coding standards
  * Select all validation options
  * Click OK to enable these new settings
 
+Development environment
+=======================
+
+* Docker version 17.12.1-ce, build 7390fc6
+* docker-compose version 1.21.2, build a133471
+* ports 3000 and 8082 should be free
+
+Startup
+=======
+
+* Run `sh docker-start.sh`
+* open http://0.0.0.0:3000
+
 Known issues
 ============
 
